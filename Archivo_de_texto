@@ -1,1 +1,84 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
 
+int main() {
+    int opcion;
+
+    do {
+        // --- MENÚ ---
+        cout << "\n=== SISTEMA DE ESTUDIANTES ===" << endl;
+        cout << "1. Registrar estudiante" << endl;
+        cout << "2. Ver estudiantes" << endl;
+        cout << "0. Salir" << endl;
+        cout << "Elige una opcion: ";
+        cin >> opcion;
+
+        // --- OPCIÓN 1: REGISTRAR ---
+        if (opcion == 1) {
+            string nombre, carrera;
+            int edad;
+            double promedio;
+
+            cout << "\n-- Registrar Estudiante --" << endl;
+
+            // Leer datos
+            cout << "Nombre: ";
+            cin >> nombre;
+
+            cout << "Edad: ";
+            cin >> edad;
+
+            // Validacion simple de edad
+            if (edad < 1 || edad > 120) {
+                cout << "Error: edad no valida." << endl;
+            } else {
+                cout << "Carrera: ";
+                cin >> carrera;
+
+                cout << "Promedio (0 a 10): ";
+                cin >> promedio;
+
+                // Validacion simple de promedio
+                if (promedio < 0 || promedio > 10) {
+                    cout << "Error: promedio no valido." << endl;
+                } else {
+                    // Guardar en archivo (ios::app = agrega sin borrar lo anterior)
+                    ofstream archivo("estudiantes.txt", ios::app);
+                    archivo << nombre << " " << edad << " " << carrera << " " << promedio << endl;
+                    archivo.close(); // cerrar el archivo
+                    cout << "Estudiante guardado!" << endl;
+                }
+            }
+        }
+
+        // --- OPCIÓN 2: VER ESTUDIANTES ---
+        if (opcion == 2) {
+            cout << "\n-- Lista de Estudiantes --" << endl;
+
+            string nombre, carrera;
+            int edad;
+            double promedio;
+
+            ifstream archivo("estudiantes.txt");
+
+            if (!archivo.is_open()) {
+                cout << "No hay estudiantes aun." << endl;
+            } else {
+                // Leer línea por línea mientras haya datos
+                while (archivo >> nombre >> edad >> carrera >> promedio) {
+                    cout << "Nombre: " << nombre
+                         << " | Edad: " << edad
+                         << " | Carrera: " << carrera
+                         << " | Promedio: " << promedio << endl;
+                }
+                archivo.close();
+            }
+        }
+
+    } while (opcion != 0); // repite hasta que el usuario elija 0
+
+    cout << "Hasta luego!" << endl;
+    return 0;
+}
