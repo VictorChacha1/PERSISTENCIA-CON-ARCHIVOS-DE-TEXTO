@@ -7,7 +7,7 @@ int main() {
     int opcion;
 
     do {
-        // --- MENÚ ---
+        // MENÚ 
         cout << "\n=== SISTEMA DE ESTUDIANTES ===" << endl;
         cout << "1. Registrar estudiante" << endl;
         cout << "2. Ver estudiantes" << endl;
@@ -15,7 +15,7 @@ int main() {
         cout << "Elige una opcion: ";
         cin >> opcion;
 
-        // --- OPCIÓN 1: REGISTRAR ---
+        // REGISTRAR 
         if (opcion == 1) {
             string nombre, carrera;
             int edad;
@@ -23,14 +23,12 @@ int main() {
 
             cout << "\n-- Registrar Estudiante --" << endl;
 
-            // Leer datos
             cout << "Nombre: ";
             cin >> nombre;
 
             cout << "Edad: ";
             cin >> edad;
 
-            // Validacion simple de edad
             if (edad < 1 || edad > 120) {
                 cout << "Error: edad no valida." << endl;
             } else {
@@ -40,11 +38,9 @@ int main() {
                 cout << "Promedio (0 a 10): ";
                 cin >> promedio;
 
-                // Validacion simple de promedio
                 if (promedio < 0 || promedio > 10) {
                     cout << "Error: promedio no valido." << endl;
                 } else {
-                    // Guardar en archivo (ios::app = agrega sin borrar lo anterior)
                     ofstream archivo("estudiantes.txt", ios::app);
                     archivo << nombre << " " << edad << " " << carrera << " " << promedio << endl;
                     archivo.close(); // cerrar el archivo
@@ -53,7 +49,7 @@ int main() {
             }
         }
 
-        // --- OPCIÓN 2: VER ESTUDIANTES ---
+        // VER ESTUDIANTES 
         if (opcion == 2) {
             cout << "\n-- Lista de Estudiantes --" << endl;
 
@@ -66,7 +62,6 @@ int main() {
             if (!archivo.is_open()) {
                 cout << "No hay estudiantes aun." << endl;
             } else {
-                // Leer línea por línea mientras haya datos
                 while (archivo >> nombre >> edad >> carrera >> promedio) {
                     cout << "Nombre: " << nombre
                          << " | Edad: " << edad
@@ -77,7 +72,7 @@ int main() {
             }
         }
 
-    } while (opcion != 0); // repite hasta que el usuario elija 0
+    } while (opcion != 0); 
 
     cout << "Hasta luego!" << endl;
     return 0;
