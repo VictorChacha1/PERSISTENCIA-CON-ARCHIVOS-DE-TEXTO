@@ -1,0 +1,51 @@
+Algoritmo GestionEstudiantes
+    Definir opcion, edad Como Entero
+    Definir nombre, carrera Como Caracter
+    Definir promedio Como Real
+    
+    Repetir
+        Escribir ""
+        Escribir "=== SISTEMA DE ESTUDIANTES ==="
+        Escribir "1. Registrar estudiante"
+        Escribir "2. Ver estudiantes"
+        Escribir "0. Salir"
+        Escribir "Elige una opcion: "
+        Leer opcion
+        
+        Si opcion = 1 Entonces
+            Escribir ""
+            Escribir "-- Registrar Estudiante --"
+            Escribir "Nombre: "
+            Leer nombre
+            Escribir "Edad: "
+            Leer edad
+            
+            Si edad < 1 O edad > 120 Entonces
+                Escribir "Error: edad no valida."
+            SiNo
+                Escribir "Carrera: "
+                Leer carrera
+                Escribir "Promedio (0 a 10): "
+                Leer promedio
+                
+                Si promedio < 0 O promedio > 10 Entonces
+                    Escribir "Error: promedio no valido."
+                SiNo
+                    // Nota: PSeInt no escribe archivos de texto (ofstream) nativamente.
+                    // Esta línea representa lógicamente el momento de la persistencia.
+                    Escribir "Estudiante guardado!"
+                FinSi
+            FinSi
+        FinSi
+        
+        Si opcion = 2 Entonces
+            Escribir ""
+            Escribir "-- Lista de Estudiantes --"
+            // Representación lógica de la lectura del archivo (ifstream).
+            Escribir "Mostrando registros guardados en estudiantes.txt..."
+        FinSi
+        
+    Hasta Que opcion = 0
+    
+    Escribir "Hasta luego!"
+FinAlgoritmo
